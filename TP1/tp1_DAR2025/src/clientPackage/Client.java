@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class Client {
     public static void main(String[] args) {
-        String serverAddress = "167.168.1.165";
+        String serverAddress = "0.0.0.0";
         //le meme port de serveur
         int port = 200;
         // Première étape
