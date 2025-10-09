@@ -1,4 +1,5 @@
 package serverPackage;
+
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,7 +10,7 @@ import java.net.Socket;
 public class Server {
     public static void main(String[] args) {
     	//choisir un port 
-        final int port = 200; 
+        final int port = 2400; 
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Je suis un serveur en attente de la connexion d'un client");
@@ -32,6 +33,9 @@ public class Server {
                     System.out.println("Message client: " + message);
                     // Répondre au client
                     out.println("Serveur: message reçu -> " + message);
+                    int i=Integer.parseInt(message)*3;
+                    System.out.println("calcul="+i);
+
                 } else {
                     System.out.println("Le client s'est déconnecté sans envoyer de message.");
                 }
