@@ -1,4 +1,5 @@
 package clientPackage;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,7 +10,7 @@ public class Client {
     public static void main(String[] args) {
         String serverAddress = "0.0.0.0";
         //le meme port de serveur
-        int port = 200;
+        int port = 2400;
         // Première étape
         System.out.println("Je suis un client pas encore connecté…");
         //try avec des ressource  assure la ferméture du serversocket a la sortir du block 
