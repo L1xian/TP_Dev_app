@@ -1,4 +1,6 @@
 package serverPackage;
+import clientPackage.Calcul;
+import java.io.Serializable;
 
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -17,16 +19,14 @@ public class Server {
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)
             ) {
                 System.out.println("Un client est connecté : " + clientSocket.getRemoteSocketAddress());
-                String message = in.readLine();
-                if (message != null) {
-                    System.out.println("Message reçu ");
-                    int r=Calcul.Cal(message);
-                    out.println(r);
-                } else {
-                    System.out.println("Le client s'est déconnecté sans envoyer de message.");
-                }
-                System.out.println("Fermeture du socket client...");
+                Calcul c = new Calcul();
+                c = (Calcul) in.readObject();
+                int r = Calcul.Cal(c);
+                out.println(r);
+                } catch (ClassNotFoundException e) {
+                    System.err.println("Erreur de classe : " + e.getMessage());
             }
+
             System.out.println("arrête du serveur");
         } catch (IOException e) {
             System.err.println("Erreur réseau : " + e.getMessage());

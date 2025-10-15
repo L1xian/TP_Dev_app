@@ -5,7 +5,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+import clientPackage.Calcul;
 
 public class Client {
     public static void main(String[] args) {
@@ -17,12 +19,19 @@ public class Client {
         ){
             // envoie du message au serveur
             String line;
+            Calcul c = new Calcul();
             do{
-            System.out.println("Entrez l équation a calculer : \n");
-            line = console.readLine();
-            }while(Calcul.verif(line)==false);
-              
-            out.write(line);
+                    System.out.println("saisir l operateur (+,-,*,/)");
+                    String op = in.readLine();
+                    System.out.println("saisir le premier nombre"); 
+                    int n1=(Integer.parseInt(in.readLine()));
+                    System.out.println("saisir le deuxieme nombre");
+                    int n2=(Integer.parseInt(in.readLine()));
+            }while(Calcul.verif(op,n1,n2)==false);
+            c.setOp(op);
+            c.setN1(n1);
+            c.setN2(n2);
+            out.writeObject(c);
             out.flush();
 
             // Lecture de la réponse du serveur
