@@ -5,10 +5,13 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
-import clientPackage.Calcul;
 
+// object
+import java.io.ObjectOutputStream;
+import Calcul.java;
+
+//** string
 public class Client {
     public static void main(String[] args) {
         try (
@@ -17,7 +20,26 @@ public class Client {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         ){
-            // envoie du message au serveur
+            String line;
+                    System.out.println("saisir l equation");
+                    String op = in.readLine();
+        }
+        catch (IOException e) {
+            System.err.println("Erreur client : " + e.getMessage());
+        }
+    }
+
+
+/*  object
+public class Client {
+    @Override
+    public static void main(String[] args) {
+        try (
+            Socket socket = new Socket("local","");
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+        ){
             String line;
             Calcul c = new Calcul();
             do{
@@ -34,7 +56,6 @@ public class Client {
             out.writeObject(c);
             out.flush();
 
-            // Lecture de la réponse du serveur
                 String response = in.readLine();
                 System.out.println("le resultat ="+ response);
             }
@@ -43,4 +64,7 @@ public class Client {
             System.err.println("Erreur client : " + e.getMessage());
         }
     }
+}
+*/
+
 }
