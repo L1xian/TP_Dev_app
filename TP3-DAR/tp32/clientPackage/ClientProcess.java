@@ -1,3 +1,4 @@
+package tp32.clientPackage;
 import java.net.*;
 import java.io.*;
 

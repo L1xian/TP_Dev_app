@@ -1,6 +1,9 @@
+package tp32.serverPackage;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
+
+import tp31.clientPackage.ClientProcess;
 
 public class MultiThreadedServer {
     private static final int PORT = 1234;
@@ -15,7 +18,7 @@ public class MultiThreadedServer {
                 Socket clientSocket = serverSocket.accept();
                 clientCount++;
                 System.out.println("Client n°" + clientCount + " connecté : " + clientSocket.getRemoteSocketAddress());
-                pool.execute(new ClientHandler(clientSocket, clientCount));
+                pool.execute(new ClientProcess(clientSocket, clientCount));
             }
         } catch (IOException e) {
             e.printStackTrace();
