@@ -1,22 +1,32 @@
-package clientPackage;
-
-import java.io.*;
 import java.net.*;
+import java.io.*;
 
-public class Client extends Thread {
-    public static void main(String[] args) {
-        try (
-            Socket socket = new Socket("localhost", 1234);
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        ){
-            out.println("");
-            
-            
+public class ClientProcess implements Runnable {
+    private Socket clientSocket;
+    private int clientNumber;
 
-            }
+    public ClientProcess(Socket socket, int clientNumber) {
+        this.clientSocket = socket;
+        this.clientNumber = clientNumber;
+    }
+
+    @Override
+    public void run() {
+        try {
+            String clientIP = clientSocket.getRemoteSocketAddress().toString();
+            System.out.println("Client #" + clientNumber + " connected from: " + clientIP);
+
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+
+            out.println("You are client #" + clientNumber);
+
+            
+            System.out.println("Client #" + clientNumber + " disconnected");
+            clientSocket.close();
+
         } catch (IOException e) {
-            System.err.println("Erreur client : " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
+}
