@@ -7,9 +7,9 @@ import tp31.clientPackage.ClientProcess;
 
 public class MultiThreadedServer {
     private static final int PORT = 1234;
-    private static int nbr = 0; // Pool de threads
+    private static int nbr = 0;
 
-    public static void main(String[] args) {
+    public static synchronized void main(String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             System.out.println("Serveur en écoute sur le port " + PORT);
 
@@ -22,5 +22,6 @@ public class MultiThreadedServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    
+}
 }
