@@ -3,7 +3,8 @@ package tp32.serverPackage;
 import java.io.*;
 import java.net.*;
 
-import tp31.clientPackage.ClientProcess;
+import tp31.serverPackage.MultiThreadedServer.ClientProcess;
+
 
 public class MultiThreadedServer {
     private static final int PORT = 1234;
