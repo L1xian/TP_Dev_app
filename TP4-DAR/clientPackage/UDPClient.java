@@ -4,7 +4,7 @@ import java.net.*;
 import java.io.*;
 import java.util.Scanner;
 
-public class UDPClientBidirectionnel {
+public class UDPClient{
     private static final int SERVER_PORT = 1234;
     private static final String SERVER_ADDRESS = "localhost";
 
@@ -23,7 +23,7 @@ public class UDPClientBidirectionnel {
                 while (true) {
                     message = scanner.nextLine();
                     if (message.equalsIgnoreCase("quit")) {
-                        clientSocket.close(); // Ferme le socket pour arrêter aussi le thread récepteur
+                        clientSocket.close();
                         break;
                     }
                     String formattedMessage = "[" + username + "] : " + message;
@@ -33,7 +33,7 @@ public class UDPClientBidirectionnel {
                         clientSocket.send(sendPacket);
                     } catch (IOException e) {
                         System.out.println("Erreur lors de l'envoi du message : " + e.getMessage());
-                        break; // Sortir si une erreur survient
+                        break;
                     }
                 }
             });
@@ -58,7 +58,6 @@ public class UDPClientBidirectionnel {
 
             senderThread.start();
             receiverThread.start();
-            // Attendre que les threads se terminent
             senderThread.join();
             receiverThread.join();
             scanner.close();

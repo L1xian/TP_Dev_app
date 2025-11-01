@@ -5,7 +5,7 @@ import java.net.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class UDPServer {
+public class UDPServer{
     private static final int PORT = 1234;
     private static List<SocketAddress> connectedClients = new CopyOnWriteArrayList<>(); // Thread-safe list
     private static DatagramSocket serverSocket;
