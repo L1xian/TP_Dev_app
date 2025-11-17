@@ -27,3 +27,5 @@ public class BanqueServer {
             e.printStackTrace(System.out);}
         System.out.println("Le serveur de la banque s'arrête.");
     }}
+
+
