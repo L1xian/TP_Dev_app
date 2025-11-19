@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; }
+        #messages { list-style-type: none; margin: 0; padding: 0; width: 100%; margin-bottom: 3.5rem; }
+        #messages li { padding: 8px 12px; word-wrap: break-word; }
+        #messages li:nth-child(odd) { background: #eee; }
+        #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+        #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
+        #input:focus { outline: none; }
+        #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
+    </style>
+</head>
+<body>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+        <input id="input" autocomplete="off" placeholder="Type a message..." /><button>Send</button>
+    </form>
+
+    <script>
+        const token = localStorage.getItem('chat_token');
+        if (!token) {
+            // If no token, redirect back to login page
+            window.location.href = '/index.html';
+        }
+
+        const messages = document.getElementById('messages');
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+
+        // Connect to WebSocket with the token
+        const socket = new WebSocket(`ws://${window.location.host}/chat?token=${encodeURIComponent(token)}`);
+
+        // Generates a consistent color from a string
+        function generateColor(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            const hue = hash % 360;
+            return `hsl(${hue}, 70%, 45%)`;
+        }
+
+        socket.onopen = function() {
+            console.log("WebSocket connection established.");
+        };
+
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            const item = document.createElement('li');
+
+            if (data.type === 'system') {
+                item.style.fontStyle = 'italic';
+                item.textContent = data.message;
+            } else if (data.type === 'chat') {
+                const nicknameSpan = document.createElement('span');
+                nicknameSpan.style.color = generateColor(data.nickname);
+                nicknameSpan.style.fontWeight = 'bold';
+                nicknameSpan.textContent = data.nickname;
+
+                item.appendChild(nicknameSpan);
+                item.appendChild(document.createTextNode(': ' + data.message));
+            }
+            
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        };
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (input.value) {
+                socket.send(input.value);
+                
+                const item = document.createElement('li');
+                const nicknameSpan = document.createElement('span');
+                nicknameSpan.style.fontWeight = 'bold';
+                nicknameSpan.textContent = 'You';
+
+                item.appendChild(nicknameSpan);
+                item.appendChild(document.createTextNode(': ' + input.value));
+                messages.appendChild(item);
+
+                window.scrollTo(0, document.body.scrollHeight);
+                input.value = '';
+            }
+        });
+
+        socket.onclose = function(event) {
+            const item = document.createElement('li');
+            item.style.fontStyle = 'italic';
+            item.textContent = 'Connection closed. You may need to refresh to reconnect.';
+            messages.appendChild(item);
+        };
+    </script>
+</body>
+</html>
