@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8db4b8e7-8616-4693-89d0-ecabb95e11d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/EmbededActiveMQ.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TP6-DAR/TP6-2/RMIBanque_Server/src/main/java/metier/Compte.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../TP6-DAR/TP6-2/RMIBanque_Server/src/main/java/metier/Compte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TP6-DAR/TP6-2/RMIBanque_Server/src/main/java/rmiServer/BanqueServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../TP6-DAR/TP6-2/RMIBanque_Server/src/main/java/rmiServer/BanqueServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TP6-DAR/TP6-2/RMIBanque_Server/src/main/java/rmiService/IBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../TP6-DAR/TP6-2/RMIBanque_Server/src/main/java/rmiService/IBanque.java" afterDir="false" />
-    </list>
+    <list default="true" id="8db4b8e7-8616-4693-89d0-ecabb95e11d5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
